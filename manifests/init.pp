@@ -2,8 +2,10 @@
 # cron module
 #
 # Copyright 2008, Puzzle ITC
+# Copyright 2010, Atizo AG
 # Marcel Härry haerry+puppet(at)puzzle.ch
 # Simon Josi josi+puppet(at)puzzle.ch
+# Simon Josi simon.josi+puppet(at)atizo.com
 #
 # This program is free software; you can redistribute 
 # it and/or modify it under the terms of the GNU 
@@ -12,17 +14,13 @@
 #
 
 class cron {
-    include cron::base
-}
-
-class cron::base {
-    package{'vixie-cron':
-        ensure => present,
-    }
-    service{'crond':
-        ensure => running,
-        enable => true,
-        hasstatus => true,
-        require => Package['vixie-cron'],
-    }
+  package{'vixie-cron':
+    ensure => present,
+  }
+  service{'crond':
+    ensure => running,
+    enable => true,
+    hasstatus => true,
+    require => Package['vixie-cron'],
+  }
 }
