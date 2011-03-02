@@ -6,11 +6,13 @@ define cron::crond(
   $hour = '*',
   $day_of_month = '*',
   $month = '*',
-  $day_of_week = '*'
+  $day_of_week = '*',
+  $ensure = present
 ) {
   file{"/etc/cron.d/$name.cron":
     content => template('cron/crond.erb'),
     notify => Service['crond'],
+    ensure => $ensure,
     owner => root, group => root, mode => 0600;
   }
 }
