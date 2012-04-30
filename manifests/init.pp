@@ -13,13 +13,17 @@
 #
 
 class cron {
-  package{'vixie-cron':
+  package{'cron':
+	  name => $lsbmajdistrelease ? {
+	    6 => 'cronie',
+	    5 => 'vixie-cron',
+  	}, 
     ensure => present,
   }
   service{'crond':
     ensure => running,
     enable => true,
     hasstatus => true,
-    require => Package['vixie-cron'],
+    require => Package['cron'],
   }
 }
