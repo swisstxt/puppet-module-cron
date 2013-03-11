@@ -1,4 +1,11 @@
 <% env.each do |key, value| -%>
 <%= key %>=<%= value %>
 <% end -%>
-<%= [ minute, hour, day_of_month, month, day_of_week, user, command ].join(' ') %>
+<%= [
+  minute.to_a.join(','),
+  hour.to_a.join(','),
+  day_of_month.to_a.join(','),
+  month.to_a.join(','),
+  day_of_week.to_a.join(','),
+  user, command
+  ].join(' ') %>

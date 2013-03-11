@@ -9,6 +9,7 @@ define cron::crond(
   $day_of_week = '*',
   $ensure = present
 ) {
+  include cron
   file{"/etc/cron.d/$name.cron":
     content => template('cron/crond.erb'),
     notify => Service['crond'],
