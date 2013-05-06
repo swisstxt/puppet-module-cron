@@ -2,10 +2,10 @@
 <%= key %>=<%= value %>
 <% end -%>
 <%= [
-  minute.to_a.join(','),
-  hour.to_a.join(','),
-  day_of_month.to_a.join(','),
-  month.to_a.join(','),
-  day_of_week.to_a.join(','),
+  Array(minute).join(','),
+  Array(hour).join(','),
+  Array(day_of_month).join(','),
+  Array(month).join(','),
+  Array(day_of_week).join(','),
   user, command
   ].join(' ') %>
