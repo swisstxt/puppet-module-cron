@@ -14,11 +14,14 @@
 
 class cron {
   package{'cron':
-	  name => $lsbmajdistrelease ? {
-	    6 => 'cronie',
-	    5 => 'vixie-cron',
-  	}, 
     ensure => present,
+    name => $osfamily ? {
+     'RedHat' => $lsbmajdistrelease ? {
+       6 => 'cronie',
+       5 => 'vixie-cron',
+     },
+     default => 'cron',
+    }
   }
   service{'crond':
     ensure => running,
